@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Bu değişkeni YALNIZCA bir state'in ilk değeri olarak kullan.
 const kareIdListesi = ["sqA", "sqB", "sqC", "sqD"];
 
 export default function Kareler() {
   // ADIM 1: State'leri burada tanımlayabilirsin.
+  const [aktifKare, setAktifKare] = useState(null);
 
   const classAdiAl = (id) => {
     /*
@@ -14,6 +15,7 @@ export default function Kareler() {
     - Diğer durumlar için boş string dönmeli.
     */
     /* return aktifKare === id ? "active" : ""; */
+      return aktifKare === id ? "active" : "";
   };
 
   const aktifEt = (id) => {
@@ -23,6 +25,7 @@ export default function Kareler() {
     - Eğer tıklanan önceden aktifse, aktifliğini kaldırmalıyız. (aktif kare bilgisini saklayan state'i sıfırlayabiliriz)
     */
     /* setAktifKare(aktifKare === id ? null : id); */
+    setAktifKare(aktifKare === id ? null : id);
   };
 
   /*
@@ -36,7 +39,7 @@ export default function Kareler() {
     <div className="container">
       <h1>Aktif Kare</h1>
       <div className="squares">
-        {/*
+        {
         kareIdListesi.map((id) => (
           <div
             key={id}
@@ -44,7 +47,7 @@ export default function Kareler() {
             className={`square ${classAdiAl(id)}`}
             onClick={() => aktifEt(id)}
           />
-        ))*/}
+        ))}
       </div>
     </div>
   );
